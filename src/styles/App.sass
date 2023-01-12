@@ -1,0 +1,87 @@
+$white: #fff
+$lightGray: #abb8c3
+$buttonBackground: rgb(42, 68, 196)
+$buttonHoverBackground: rgb(27, 43, 126)
+
+@mixin transition
+  transition: .1s all ease-in-out
+
+@mixin mainButton
+  border: none
+  color: $white
+  background: $buttonBackground
+  padding: 1em 2em
+  display: flex
+  justify-content: center
+  align-items: center
+  font-weight: bold
+
+h1
+  color: #000
+  margin: 0
+
+
+body
+  margin: 0
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  font-family: PT Sans, serif
+
+
+code
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', serif
+  monospace
+
+.app
+  &__inner
+    max-width: 1140px
+    margin: 0 auto
+
+.header
+  background-color: $white
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  font-size: calc(10px + 2vmin)
+  color: white
+  height: 150px
+
+  &__logo
+    text-align: center
+    &--logoImg
+      width: 70%
+      margin: 0 auto
+
+  &__desc
+    &--title
+
+
+
+.search
+  background: $lightGray
+  min-height: 300px
+
+.beer-list
+
+
+.main-button
+  color: $white
+  &__button
+    @include mainButton
+    @include transition
+    &:hover
+      background: $buttonHoverBackground
+      .main-button__button--text
+        transform: translate3d(5px, 0, 0)
+      .main-button__button--icon
+        transform: translate3d(10px, 0, 0)
+        opacity: 0
+
+    &--text
+      @include transition
+      transform: translate3d(0px, 0px, 0px)
+
+    &--icon
+      @include transition
+
