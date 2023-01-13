@@ -63,8 +63,10 @@ const App = () => {
     <div className="app">
       <section className={"app__inner"}>
         <MemoizedHeader />
-        <Search searchFn={searchForBeer} />
-        <BeerList beerResults={state.beerResults} />
+        <section className={"test"}>
+          <Search searchFn={searchForBeer} />
+          <BeerList beerResults={state.beerResults} />
+        </section>
       </section>
     </div>
   );

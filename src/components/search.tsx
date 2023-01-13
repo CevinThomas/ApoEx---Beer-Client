@@ -10,7 +10,10 @@ const Search = ({ searchFn }: Props) => {
 
   return (
     <section className={"search"}>
-      <div className={"search__container"}>
+      <div className={"search__container-title"}>
+        <h2>BEER LIST</h2>
+      </div>
+      <div className={"search__container-input"}>
         <div className={"search__input"}>
           <input
             onChange={(event: ChangeEvent<HTMLInputElement>) =>

@@ -10,11 +10,6 @@ const Header = () => {
           alt="ApoEx logo"
         />
       </div>
-      <div className={"header__desc"}>
-        <h1 className={"header__desc--title"}>
-          Vi förenklar och förbättrar för vården
-        </h1>
-      </div>
     </section>
   );
 };

@@ -62,12 +62,11 @@ export const getBeersBySearch = async (
   currentPage: number,
   searchTerm?: string
 ): Promise<BeerResults[]> => {
-  const baseUrl = `${process.env.REACT_APP_BEER_BASE_API}beers?per_page=10&page=${currentPage}`;
+  const baseUrl = `${process.env.REACT_APP_BEER_BASE_API}/beers?per_page=10&page=${currentPage}`;
   const constructedUrl = searchTerm
     ? `${baseUrl}&beer_name=${searchTerm}`
     : baseUrl;
 
-  console.log(constructedUrl);
   const beersResponse = await axios.get(constructedUrl);
 
   return beersResponse.data.map(normalizeBeer);

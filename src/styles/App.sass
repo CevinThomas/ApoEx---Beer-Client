@@ -1,7 +1,8 @@
 $white: #fff
-$lightGray: #abb8c3
+$lightGray: #f1f6f8
 $buttonBackground: rgb(42, 68, 196)
 $buttonHoverBackground: rgb(27, 43, 126)
+$orange: #fce5dd
 
 @mixin transition
   transition: .1s all ease-in-out
@@ -35,6 +36,7 @@ code
 
 .app
   background-color: $lightGray
+  min-height: 100vh
   &__inner
     max-width: 1140px
     margin: 0 auto
@@ -47,7 +49,8 @@ code
   justify-content: center
   font-size: calc(10px + 2vmin)
   color: white
-  height: 150px
+  padding-top: 80px
+  padding-bottom: 50px
 
   &__logo
     text-align: center
@@ -61,19 +64,25 @@ code
 
 
 .search
-  background: $lightGray
-  height: 100px
+  padding: 0 2em
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  align-items: center
+  &__container-title
+    h2
+      font-size: 2em
 
-  &__container
+  &__container-input
     display: flex
     flex-direction: row
     justify-content: center
     height: 50px
-    padding-top: 25px
+    width: 50%
   &__input
     height: 100%
     border: none
-    width: 40%
+    width: 100%
     &--input
       height: 100%
       width: 100%
@@ -82,14 +91,22 @@ code
       padding-left: 1em
       font-size: 1em
       border: none
-      &:focus
-        box-shadow: 0 0 10px 0 lightgray
+      box-shadow: 0 0 10px 0 lightgray
 
+
+.test
+  background-color: white
 .beer-list
   background-color: $lightGray
   &__inner
     background-color: $white
-    padding: 2em
+    padding: 0 2em 2em 2em
+    &__no-results
+      display: flex
+      align-items: center
+      justify-content: center
+      margin-top: 30px
+      font-size: 1em
   &__single-container
     @include transition
     display: flex
@@ -100,10 +117,13 @@ code
     cursor: pointer
     position: relative
     margin: 10px 0
+    border-bottom: 2px solid $orange
+
     &:hover
-      background-color: $lightGray
+      background-color: $orange
       .beer-list__single-container__info__image
         border-right: 2px solid white
+
 
 
     &__info
@@ -113,7 +133,7 @@ code
         width: 50px
         padding-right: 20px
         padding-left: 20px
-        border-right: 2px solid $lightGray
+        border-right: 2px solid $orange
         @include transition
         &--image
           float: left
@@ -141,7 +161,7 @@ code
       right: 0
       top: 0
       height: 100%
-      background-color: $lightGray
+      background-color: $orange
       display: flex
       align-items: center
       &--button
@@ -149,11 +169,7 @@ code
 
 
 
-.odd
-  background-color: #f2f2f2
 
-.even
-  background-color: lightgray
 
 .main-button
   color: $white
