@@ -1,6 +1,7 @@
 import React from "react";
 import { BeerResults } from "../api/api";
 import { BiChevronRight } from "react-icons/bi";
+import { BiBeer } from "react-icons/bi";
 
 type Props = {
   beerResults: BeerResults[];
@@ -8,18 +9,18 @@ type Props = {
 
 const BeerList = ({ beerResults }: Props) => {
   return (
-    <>
-      {beerResults.length !== 0 &&
-        beerResults.map((beer: BeerResults, index: number) => (
-          <section className={"beer-list"}>
-            <div className={"beer-list__inner"}>
-              <div
-                className={`beer-list__single-container ${
-                  index % 2 === 0 ? "odd" : "even"
-                }`}
-              >
-                <div className={"beer-list__single-container__info"}>
-                  <div className={"beer-list__single-container__info__image"}>
+    <section className={"beer-list"}>
+      <div className={"beer-list__inner"}>
+        {beerResults.length !== 0 &&
+          beerResults.map((beer: BeerResults, index: number) => (
+            <div
+              className={`beer-list__single-container ${
+                index % 2 === 0 ? "odd" : "even"
+              }`}
+            >
+              <div className={"beer-list__single-container__info"}>
+                <div className={"beer-list__single-container__info__image"}>
+                  {beer.image ? (
                     <img
                       alt={"Image of specific beer"}
                       className={
@@ -27,37 +28,42 @@ const BeerList = ({ beerResults }: Props) => {
                       }
                       src={beer.image}
                     />
-                  </div>
-                  <div className={"beer-list__single-container__info__desc"}>
-                    <p
+                  ) : (
+                    <BiBeer
                       className={
-                        "beer-list__single-container__info__desc--name"
+                        "beer-list__single-container__info__image--image"
                       }
-                    >
-                      {beer.name}
-                    </p>
-                    <p
-                      className={
-                        "beer-list__single-container__info__desc--alcohol-percentage"
-                      }
-                    >
-                      {`${beer.alcoholVolume}%`}
-                    </p>
-                  </div>
+                      size={40}
+                    />
+                  )}
                 </div>
-                <div className={"beer-list__single-container__button"}>
-                  <a
-                    className={"beer-list__single-container__button--button"}
-                    href="#"
+                <div className={"beer-list__single-container__info__desc"}>
+                  <p
+                    className={"beer-list__single-container__info__desc--name"}
                   >
-                    <BiChevronRight size={40} />
-                  </a>
+                    {beer.name}
+                  </p>
+                  <p
+                    className={
+                      "beer-list__single-container__info__desc--alcohol-percentage"
+                    }
+                  >
+                    {`${beer.alcoholVolume}%`}
+                  </p>
                 </div>
               </div>
+              <div className={"beer-list__single-container__button"}>
+                <a
+                  className={"beer-list__single-container__button--button"}
+                  href="#"
+                >
+                  <BiChevronRight size={40} />
+                </a>
+              </div>
             </div>
-          </section>
-        ))}
-    </>
+          ))}
+      </div>
+    </section>
   );
 };
 

@@ -1,9 +1,10 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer, useRef } from "react";
 import "./styles/App.sass";
 import { MemoizedHeader } from "./components/header";
 import Search from "./components/search";
 import BeerList from "./components/beerList";
 import { BeerResults, getBeersBySearch } from "./api/api";
+import Pagination, { UpdatePageOptions } from "./components/pagination";
 
 //TODO: When searching, take input string, add _ between each space that the user entered
 
@@ -24,11 +25,16 @@ type Actions =
   | {
       type: ActionTypes.UpdateBeerResults;
       payload: BeerResults[];
+    }
+  | {
+      type: ActionTypes.UpdatePage;
+      payload: UpdatePageOptions;
     };
 
 enum ActionTypes {
   ToggleLoading,
   UpdateBeerResults,
+  UpdatePage,
 }
 
 const reducer = (state = initialState, action: Actions): InitialState => {
@@ -44,18 +50,41 @@ const reducer = (state = initialState, action: Actions): InitialState => {
         ...state,
         beerResults: action.payload,
       };
+    case ActionTypes.UpdatePage:
+      return {
+        ...state,
+        currentPage:
+          action.payload === "incrementPage"
+            ? state.currentPage++
+            : state.currentPage--,
+      };
   }
 };
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const searchInput = useRef<string>("");
 
-  const searchForBeer = async (searchTerm: string) => {
-    const beersResults = await getBeersBySearch(state.currentPage, searchTerm);
-    console.log(beersResults);
+  useEffect(() => {
+    searchForBeer();
+    return () => {};
+  }, [state.currentPage]);
+
+  const searchForBeer = async () => {
+    const beersResults = await getBeersBySearch(
+      state.currentPage,
+      searchInput.current
+    );
     dispatch({
       type: ActionTypes.UpdateBeerResults,
       payload: beersResults,
+    });
+  };
+
+  const updatePage = (updateOption: UpdatePageOptions) => {
+    dispatch({
+      type: ActionTypes.UpdatePage,
+      payload: updateOption,
     });
   };
 
@@ -63,9 +92,19 @@ const App = () => {
     <div className="app">
       <section className={"app__inner"}>
         <MemoizedHeader />
-        <section className={"test"}>
-          <Search searchFn={searchForBeer} />
+        <section>
+          <Search
+            searchFn={searchForBeer}
+            updateSearchText={(newText: string) =>
+              (searchInput.current = newText)
+            }
+          />
           <BeerList beerResults={state.beerResults} />
+          <Pagination
+            currentPage={state.currentPage}
+            updatePage={updatePage}
+            amountOfResults={state.beerResults.length}
+          />
         </section>
       </section>
     </div>
