@@ -1,4 +1,6 @@
-import { BEER_BASE_URL } from "../env";
+import axios from "axios";
+import { normalizeBeer } from "../utils/functions/functions";
+
 type Volumes = {
   value: number;
   unit: string;
@@ -16,7 +18,7 @@ type Ingredient = {
   attribute: string;
 };
 
-type BeerResponse = {
+export type BeerResponse = {
   id: number;
   name: string;
   tagline: string;
@@ -42,13 +44,31 @@ type BeerResponse = {
     malt: Omit<Ingredient, "add" | "attribute">[];
     hops: Ingredient[];
   };
-  yeast: string;
+  yeast?: string;
   food_pairing: string[];
   brewers_tips: string;
+  contributed_by?: string;
 };
 
-export const getBeersBySearch = async (searchTerm: string) => {
-  console.log("making request");
-  const beersResponse = await fetch(`${BEER_BASE_URL}/beers`);
-  console.log("response: ", beersResponse);
+export type BeerResults = {
+  id: number;
+  name: string;
+  alcoholVolume: number;
+  image: string;
+  desc: string;
+};
+
+export const getBeersBySearch = async (
+  currentPage: number,
+  searchTerm?: string
+): Promise<BeerResults[]> => {
+  const baseUrl = `${process.env.REACT_APP_BEER_BASE_API}beers?per_page=10&page=${currentPage}`;
+  const constructedUrl = searchTerm
+    ? `${baseUrl}&beer_name=${searchTerm}`
+    : baseUrl;
+
+  console.log(constructedUrl);
+  const beersResponse = await axios.get(constructedUrl);
+
+  return beersResponse.data.map(normalizeBeer);
 };

@@ -34,6 +34,7 @@ code
   monospace
 
 .app
+  background-color: $lightGray
   &__inner
     max-width: 1140px
     margin: 0 auto
@@ -85,7 +86,74 @@ code
         box-shadow: 0 0 10px 0 lightgray
 
 .beer-list
+  background-color: $lightGray
+  &__inner
+    background-color: $white
+    padding: 2em
+  &__single-container
+    @include transition
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    padding-top: 20px
+    padding-bottom: 20px
+    cursor: pointer
+    position: relative
+    margin: 10px 0
+    &:hover
+      background-color: $lightGray
+      .beer-list__single-container__info__image
+        border-right: 2px solid white
 
+
+    &__info
+      display: flex
+      flex-direction: row
+      &__image
+        width: 50px
+        padding-right: 20px
+        padding-left: 20px
+        border-right: 2px solid $lightGray
+        @include transition
+        &--image
+          float: left
+          width: 100%
+          height: 75px
+          object-fit: contain
+
+
+      &__desc
+        display: flex
+        flex-direction: column
+        justify-content: center
+        &--name
+          font-size: 1.5em
+          margin: 0
+          padding-left: 20px
+        &--alcohol-percentage
+          margin: 0
+          font-size: 1em
+          padding-left: 20px
+          font-weight: bold
+
+    &__button
+      position: absolute
+      right: 0
+      top: 0
+      height: 100%
+      background-color: $lightGray
+      display: flex
+      align-items: center
+      &--button
+        color: white
+
+
+
+.odd
+  background-color: #f2f2f2
+
+.even
+  background-color: lightgray
 
 .main-button
   color: $white

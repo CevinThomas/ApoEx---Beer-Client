@@ -1,5 +1,5 @@
 console.log("HELLO");
-if (process.env.REACT_APP_BEER_BASE_URL === undefined) {
+if (process.env.REACT_APP_BEER_BASE_API === undefined) {
   throw Error("Missing Beer API Base URL Env Variable");
 }
 
