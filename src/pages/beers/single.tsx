@@ -75,8 +75,18 @@ const SingleBeer = () => {
       <MemoizedHeader />
       {state.loading && <Loader />}
       {!state.loading && state.beerData === null && (
-        <section>
-          <div>something went wrong with getting the beer data</div>
+        <section className={"single-beer"}>
+          <div className={"single-beer__home"}>
+            <Link className={"single-beer__home--link"} to={"/"}>
+              <BiChevronLeft size={40} />
+            </Link>
+          </div>
+          <div className={"single-beer__error"}>
+            <h3 className={"single-beer__error--text"}>
+              Something went wrong with getting the correct beer information,
+              please try another beer
+            </h3>
+          </div>
         </section>
       )}
 
