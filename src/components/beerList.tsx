@@ -12,7 +12,7 @@ const BeerList = ({ beerResults }: Props) => {
   return (
     <section className={"beer-list"}>
       <div className={"beer-list__inner"}>
-        {beerResults.length !== 0 &&
+        {beerResults.length !== 0 ? (
           beerResults.map((beer: BeerResults) => (
             <Link key={beer.id} to={`/beer/${beer.id}`}>
               <div className={`beer-list__single-container`}>
@@ -62,7 +62,17 @@ const BeerList = ({ beerResults }: Props) => {
                 </div>
               </div>
             </Link>
-          ))}
+          ))
+        ) : (
+          <section className={"beer-list__no-results"}>
+            <div className={"beer-list__no-results__container"}>
+              <h3 className={"beer-list__no-results__container--text"}>
+                No beer was found with that search term, please try again with a
+                different search
+              </h3>
+            </div>
+          </section>
+        )}
       </div>
     </section>
   );

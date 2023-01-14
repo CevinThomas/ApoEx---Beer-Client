@@ -125,11 +125,13 @@ const App = () => {
             }
           />
           <BeerList beerResults={state.beerResults} />
-          <Pagination
-            currentPage={state.currentPage}
-            updatePage={updatePage}
-            amountOfResults={state.beerResults.length}
-          />
+          {state.beerResults.length !== 0 && (
+            <Pagination
+              currentPage={state.currentPage}
+              updatePage={updatePage}
+              amountOfResults={state.beerResults.length}
+            />
+          )}
         </section>
       </section>
     </div>
