@@ -17,7 +17,7 @@ const Pagination = ({ updatePage, currentPage, amountOfResults }: Props) => {
         <div className={"pagination__inner__decrement"}>
           <button
             className={"pagination__inner__decrement--button"}
-            disabled={currentPage === 1}
+            disabled={currentPage <= 1}
             onClick={() => updatePage("decrementPage")}
           >
             <BiChevronLeft size={20} />
