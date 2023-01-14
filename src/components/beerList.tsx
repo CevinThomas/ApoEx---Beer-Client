@@ -2,7 +2,7 @@ import React from "react";
 import { BeerResults } from "../api/api";
 import { BiChevronRight } from "react-icons/bi";
 import { BiBeer } from "react-icons/bi";
-import { Link, redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 type Props = {
   beerResults: BeerResults[];
@@ -13,13 +13,9 @@ const BeerList = ({ beerResults }: Props) => {
     <section className={"beer-list"}>
       <div className={"beer-list__inner"}>
         {beerResults.length !== 0 &&
-          beerResults.map((beer: BeerResults, index: number) => (
-            <Link to={`/beer/${beer.id}`}>
-              <div
-                className={`beer-list__single-container ${
-                  index % 2 === 0 ? "odd" : "even"
-                }`}
-              >
+          beerResults.map((beer: BeerResults) => (
+            <Link key={beer.id} to={`/beer/${beer.id}`}>
+              <div className={`beer-list__single-container`}>
                 <div className={"beer-list__single-container__info"}>
                   <div className={"beer-list__single-container__info__image"}>
                     {beer.image ? (

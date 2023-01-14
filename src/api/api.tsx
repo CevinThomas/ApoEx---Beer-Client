@@ -56,6 +56,7 @@ export type BeerResults = {
   alcoholVolume: number;
   image: string;
   desc: string;
+  foodPairing: string[];
 };
 
 export const getBeersBySearch = async (
@@ -70,4 +71,14 @@ export const getBeersBySearch = async (
   const beersResponse = await axios.get(constructedUrl);
 
   return beersResponse.data.map(normalizeBeer);
+};
+
+export const getSingleBeerById = async (
+  beerId: number
+): Promise<BeerResults[]> => {
+  const beerResponse = await axios.get(
+    `https://api.punkapi.com/v2/beers/${beerId}`
+  );
+
+  return beerResponse.data.map(normalizeBeer);
 };

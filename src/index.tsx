@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./styles/App.sass";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Params, RouterProvider } from "react-router-dom";
 import NotFound from "./pages/errors/notFound";
 import SingleBeer from "./pages/beers/single";
 
@@ -20,6 +20,7 @@ const router = createBrowserRouter([
   {
     path: "/beer/:id",
     element: <SingleBeer />,
+    loader: ({ params }): Params<string> => params,
   },
 ]);
 

@@ -5,7 +5,6 @@ import Search from "./components/search";
 import BeerList from "./components/beerList";
 import { BeerResults, getBeersBySearch } from "./api/api";
 import Pagination, { UpdatePageOptions } from "./components/pagination";
-import search from "./components/search";
 
 //TODO: When searching, take input string, add _ between each space that the user entered
 

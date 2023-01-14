@@ -162,6 +162,7 @@ code
         border-right: 2px solid $orange
         @include transition
         &--image
+          color: black
           float: left
           width: 100%
           height: 75px
@@ -222,3 +223,55 @@ code
     &--icon
       @include transition
 
+
+
+.single-beer
+  max-width: 1140px
+  margin: 0 auto
+  &__home
+    float: left
+    &--link
+      @include mainButton
+  &__title
+    margin-bottom: 50px
+
+    &--title
+      font-size: 2.5em
+      text-align: center
+      width: 50%
+      border-bottom: 3px solid $orange
+      padding-bottom: 30px
+      margin: 0 auto
+  &__image
+
+    &__container
+      text-align: center
+      &--image
+        height: 300px
+        width: 100%
+        object-fit: contain
+  &__info
+    &__desc
+      width: 80%
+      margin: 0 auto
+      &--desc
+        text-align: center
+    &__food
+      width: 80%
+      margin: 100px auto 0 auto
+
+      &__header
+        text-align: center
+        &--header
+          font-size: 1.5em
+      &__single
+        padding: 1em
+        &--item
+          text-align: center
+          font-size: 1.2em
+
+.odd
+  background-color: $lightGray
+
+loader
+  &--player

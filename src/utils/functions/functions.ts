@@ -6,4 +6,5 @@ export const normalizeBeer = (beer: BeerResponse) => ({
   alcoholVolume: beer.abv,
   image: beer.image_url,
   desc: beer.description,
+  foodPairing: beer.food_pairing,
 });
