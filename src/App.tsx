@@ -7,6 +7,7 @@ import { BeerResults, getBeersBySearch } from "./api/api";
 import Pagination, {
   UpdatePageOptions,
 } from "./components/pagination/pagination";
+import { scrollToTop } from "./utils/functions/functions";
 
 type InitialState = {
   clientLoading: boolean;
@@ -110,7 +111,6 @@ const App = () => {
 
   useEffect(() => {
     loadMoreBeer();
-    return () => {};
   }, [state.currentPage]);
 
   const searchForBeer = async () => {
@@ -158,9 +158,6 @@ const App = () => {
     }
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
 
   const updatePage = (updateOption: UpdatePageOptions) => {
     dispatch({

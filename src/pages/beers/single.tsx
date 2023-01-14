@@ -98,9 +98,11 @@ const SingleBeer = () => {
                 <BiChevronLeft size={40} />
               </Link>
             </div>
-            <h1 className={"single-beer__title--title"}>
-              {`${state.beerData.name} - ${state.beerData.alcoholVolume}%`}
-            </h1>
+            {state.beerData.name && state.beerData.alcoholVolume &&
+                <h1 className={"single-beer__title--title"}>
+                  {`${state.beerData.name} - ${state.beerData.alcoholVolume}%`}
+                </h1>}
+
           </section>
           <section className={"single-beer__image"}>
             <div className={"single-beer__image__container"}>
@@ -116,11 +118,13 @@ const SingleBeer = () => {
             </div>
           </section>
           <section>
-            <div className={"single-beer__info__desc"}>
-              <h2 className={"single-beer__info__desc--desc"}>
-                {state.beerData.desc}
-              </h2>
-            </div>
+            {state.beerData.desc ??
+                ( <div className={"single-beer__info__desc"}>
+                  <h2 className={"single-beer__info__desc--desc"}>
+                    {state.beerData.desc}
+                  </h2>
+            </div>)}
+
             <div className={"single-beer__info__food"}>
               <div className={"single-beer__info__food__header"}>
                 <h3 className={"single-beer__info__food__header--header"}>
@@ -128,7 +132,7 @@ const SingleBeer = () => {
                 </h3>
               </div>
 
-              {state.beerData.foodPairing.map((food: string, index: number) => (
+              {state.beerData.foodPairing.length !== 0 && state.beerData.foodPairing.map((food: string, index: number) => (
                 <div
                   key={food}
                   className={`single-beer__info__food__single ${

@@ -61,7 +61,7 @@ export type BeerResults = {
 
 export const getBeersBySearch = async (
   currentPage: number,
-  searchTerm?: string
+  searchTerm: string
 ): Promise<BeerResults[]> => {
   const baseUrl = `${process.env.REACT_APP_BEER_BASE_API}/beers?per_page=10&page=${currentPage}`;
   const constructedUrl = searchTerm
