@@ -37,7 +37,7 @@ body
 
 code
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', serif
-  monospace
+
 
 .app
   background-color: $lightGray
@@ -63,8 +63,6 @@ code
       width: 70%
       margin: 0 auto
 
-  &__desc
-    &--title
 
 
 .pagination
@@ -81,7 +79,7 @@ code
     &__decrement
       &--button
         @include mainButton
-    &__current-page
+
 
     &__increment
       &--button
@@ -94,9 +92,13 @@ code
   justify-content: space-between
   align-items: center
   margin-top: 10px
+  @media (max-width: 764px)
+    flex-direction: column
+
   &__container-title
     h2
       font-size: 2em
+
 
   &__container-input
     display: flex
@@ -104,6 +106,9 @@ code
     justify-content: center
     height: 50px
     width: 50%
+    @media (max-width: 764px)
+      width: 100%
+      margin-bottom: 20px
   &__input
     height: 100%
     border: none
@@ -119,8 +124,6 @@ code
       box-shadow: 0 0 10px 0 lightgray
 
 
-.test
-  background-color: white
 .beer-list
   background-color: $lightGray
   &__no-results
@@ -186,12 +189,17 @@ code
           padding-left: 20px
           color: black
           border: none
+          @media (max-width: 764px)
+            font-size: 1em
         &--alcohol-percentage
           margin: 0
           font-size: 1em
           padding-left: 20px
           font-weight: bold
           color: black
+          @media (max-width: 764px)
+            font-size: .8em
+
 
     &__button
       position: absolute
@@ -242,8 +250,12 @@ code
       font-size: 1.5em
   &__home
     float: left
+    position: absolute
+    top: 50px
+
     &--link
       @include mainButton
+      height: 100%
   &__title
     margin-bottom: 50px
 
@@ -294,5 +306,3 @@ code
     &--text
       color: red
 
-loader
-  &--player
