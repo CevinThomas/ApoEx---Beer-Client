@@ -1,15 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.scss';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./styles/App.sass";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { createBrowserRouter, Params, RouterProvider } from "react-router-dom";
+import NotFound from "./pages/errors/notFound";
+import SingleBeer from "./pages/beers/single";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/beer/:id",
+    element: <SingleBeer />,
+    loader: ({ params }): Params<string> => params,
+  },
+]);
+
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
