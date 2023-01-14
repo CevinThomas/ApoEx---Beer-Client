@@ -1,5 +1,5 @@
 import React from "react";
-import { BeerResults } from "../api/api";
+import { BeerResults } from "../../api/api";
 import { BiChevronRight } from "react-icons/bi";
 import { BiBeer } from "react-icons/bi";
 import { Link } from "react-router-dom";
@@ -57,7 +57,7 @@ const BeerList = ({ beerResults, noResults }: Props) => {
                 <div className={"beer-list__single-container__button"}>
                   <a
                     className={"beer-list__single-container__button--button"}
-                    href="#"
+                    href="src/components/beerList/beerList#"
                   >
                     <BiChevronRight size={40} />
                   </a>

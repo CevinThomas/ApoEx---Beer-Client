@@ -2,9 +2,11 @@ import React, { useEffect, useReducer, useRef } from "react";
 import "./styles/App.sass";
 import { MemoizedHeader } from "./components/header";
 import Search from "./components/search";
-import BeerList from "./components/beerList";
+import BeerList from "./components/beerList/beerList";
 import { BeerResults, getBeersBySearch } from "./api/api";
-import Pagination, { UpdatePageOptions } from "./components/pagination";
+import Pagination, {
+  UpdatePageOptions,
+} from "./components/pagination/pagination";
 
 type InitialState = {
   clientLoading: boolean;
