@@ -14,6 +14,8 @@ Inside the root directory, run the command `npm ci`. This will do a clean instal
 ### Adding environment variables
 Inside the root directory, create a file called `.env.development` and add this to the top level of the file `REACT_APP_BEER_BASE_API=https://api.punkapi.com/v2`
 
+If you have the server already started, please restart it after adding the `.env` file
+
 ### Starting development server
 Inside the root directory, run the command `npm run start`. This will spin up the local development server. Once finished, you can visit the project under `localhost:3000`
 
