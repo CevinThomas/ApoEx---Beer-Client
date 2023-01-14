@@ -6,8 +6,6 @@ import BeerList from "./components/beerList";
 import { BeerResults, getBeersBySearch } from "./api/api";
 import Pagination, { UpdatePageOptions } from "./components/pagination";
 
-//TODO: When searching, take input string, add _ between each space that the user entered
-
 type InitialState = {
   clientLoading: boolean;
   currentPage: number;
