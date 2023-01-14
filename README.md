@@ -25,6 +25,6 @@ Testing is being done with Cypress
 1. In the root directory, run the command `npx cypress open`. This will open the cypress client
 2. Press "Component testing" of the 2 options, this should already be configured. 
 3. Choose which browser to open the UI and test with, I choose Chrome
-4. Press "Start component testing"
+4. Press "Start component testing" (This might take a second, cypress is loading but doesn't show in the UI)
 5. Left hand side, under "Specs", choose which component to run tests for
 6. Test files can be found under `components/[componentName]/[componentName].cy.tsx`
