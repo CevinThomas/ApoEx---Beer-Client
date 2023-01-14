@@ -6,13 +6,15 @@ import { Link } from "react-router-dom";
 
 type Props = {
   beerResults: BeerResults[];
+  noResults: boolean;
 };
 
-const BeerList = ({ beerResults }: Props) => {
+const BeerList = ({ beerResults, noResults }: Props) => {
   return (
     <section className={"beer-list"}>
       <div className={"beer-list__inner"}>
-        {beerResults.length !== 0 ? (
+        {beerResults.length !== 0 &&
+          !noResults &&
           beerResults.map((beer: BeerResults) => (
             <Link key={beer.id} to={`/beer/${beer.id}`}>
               <div className={`beer-list__single-container`}>
@@ -62,8 +64,8 @@ const BeerList = ({ beerResults }: Props) => {
                 </div>
               </div>
             </Link>
-          ))
-        ) : (
+          ))}
+        {noResults && (
           <section className={"beer-list__no-results"}>
             <div className={"beer-list__no-results__container"}>
               <h3 className={"beer-list__no-results__container--text"}>
