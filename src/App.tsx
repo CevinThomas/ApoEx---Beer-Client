@@ -5,6 +5,7 @@ import Search from "./components/search";
 import BeerList from "./components/beerList";
 import { BeerResults, getBeersBySearch } from "./api/api";
 import Pagination, { UpdatePageOptions } from "./components/pagination";
+import search from "./components/search";
 
 //TODO: When searching, take input string, add _ between each space that the user entered
 
@@ -29,12 +30,17 @@ type Actions =
   | {
       type: ActionTypes.UpdatePage;
       payload: UpdatePageOptions;
+    }
+  | {
+      type: ActionTypes.SearchForBeer;
+      payload: BeerResults[];
     };
 
 enum ActionTypes {
   ToggleLoading,
   UpdateBeerResults,
   UpdatePage,
+  SearchForBeer,
 }
 
 const reducer = (state = initialState, action: Actions): InitialState => {
@@ -58,6 +64,12 @@ const reducer = (state = initialState, action: Actions): InitialState => {
             ? state.currentPage++
             : state.currentPage--,
       };
+    case ActionTypes.SearchForBeer:
+      return {
+        ...state,
+        beerResults: action.payload,
+        currentPage: 1,
+      };
   }
 };
 
@@ -66,11 +78,20 @@ const App = () => {
   const searchInput = useRef<string>("");
 
   useEffect(() => {
-    searchForBeer();
+    loadMoreBeer();
     return () => {};
   }, [state.currentPage]);
 
   const searchForBeer = async () => {
+    const beerResults = await getBeersBySearch(1, searchInput.current);
+
+    dispatch({
+      type: ActionTypes.SearchForBeer,
+      payload: beerResults,
+    });
+  };
+
+  const loadMoreBeer = async () => {
     const beersResults = await getBeersBySearch(
       state.currentPage,
       searchInput.current
@@ -81,11 +102,16 @@ const App = () => {
     });
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const updatePage = (updateOption: UpdatePageOptions) => {
     dispatch({
       type: ActionTypes.UpdatePage,
       payload: updateOption,
     });
+    scrollToTop();
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useRef } from "react";
+import React, { ChangeEvent, useEffect } from "react";
 import MainButton from "./buttons/mainButton";
 
 type Props = {
@@ -7,6 +7,20 @@ type Props = {
 };
 
 const Search = ({ searchFn, updateSearchText }: Props) => {
+  const enterListener = (event: KeyboardEvent) => {
+    if (event.code === "Enter") {
+      searchFn();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", enterListener);
+
+    return () => {
+      document.removeEventListener("keydown", enterListener);
+    };
+  }, []);
+
   return (
     <section className={"search"}>
       <div className={"search__container-title"}>
@@ -23,7 +37,9 @@ const Search = ({ searchFn, updateSearchText }: Props) => {
             type="text"
           />
         </div>
-        <MainButton onClick={searchFn}>Search</MainButton>
+        <MainButton id={"search"} onClick={searchFn}>
+          Search
+        </MainButton>
       </div>
     </section>
   );

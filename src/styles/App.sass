@@ -17,10 +17,15 @@ $orange: #fce5dd
   align-items: center
   font-weight: bold
   cursor: pointer
+  &:disabled
+    background-color: $lightGray
 
 h1
   color: #000
   margin: 0
+
+a
+  text-decoration: none
 
 
 body
@@ -62,6 +67,25 @@ code
     &--title
 
 
+.pagination
+  background-color: white
+  display: flex
+  justify-content: flex-end
+  padding: 0 2em 2em 2em
+  &__inner
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: row
+    gap: 10px
+    &__decrement
+      &--button
+        @include mainButton
+    &__current-page
+
+    &__increment
+      &--button
+        @include mainButton
 
 .search
   padding: 0 2em
@@ -69,6 +93,7 @@ code
   flex-direction: row
   justify-content: space-between
   align-items: center
+  margin-top: 10px
   &__container-title
     h2
       font-size: 2em

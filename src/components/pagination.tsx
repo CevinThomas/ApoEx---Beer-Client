@@ -1,4 +1,6 @@
 import React from "react";
+import { BiChevronRight } from "react-icons/bi";
+import { BiChevronLeft } from "react-icons/bi";
 
 export type UpdatePageOptions = "incrementPage" | "decrementPage";
 
@@ -11,22 +13,26 @@ type Props = {
 const Pagination = ({ updatePage, currentPage, amountOfResults }: Props) => {
   return (
     <section className={"pagination"}>
-      <div>
-        <div>
+      <div className={"pagination__inner"}>
+        <div className={"pagination__inner__decrement"}>
           <button
+            className={"pagination__inner__decrement--button"}
             disabled={currentPage === 1}
             onClick={() => updatePage("decrementPage")}
           >
-            Left
+            <BiChevronLeft size={20} />
           </button>
         </div>
-        <div>{`Page: ${currentPage}`}</div>
-        <div>
+        <div
+          className={"pagination__inner__current-page"}
+        >{`Page: ${currentPage}`}</div>
+        <div className={"pagination__inner__increment"}>
           <button
+            className={"pagination__inner__increment--button"}
             disabled={amountOfResults < 10}
             onClick={() => updatePage("incrementPage")}
           >
-            right
+            <BiChevronRight size={20} />
           </button>
         </div>
       </div>
